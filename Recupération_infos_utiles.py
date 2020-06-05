@@ -55,5 +55,58 @@ def get_currency(info):
         if population=='':
             return 'Data not available'%on met la population
         
-
-        # faire densité, long et lat capitale, superficie, langues, leader
+        
+def get_coords(info):    
+    liste=['coordinates','largest_city','capital']  #Différents noms possibles pour obtenir des coordonnées
+    for elt in liste:
+        if elt in info:
+                L=info[elt]   #chaîne de caractères des données
+                L=L.split('|') #début de l'extraction des données
+                i=0
+                while L[i] not in ['Coord','{{Coord','{{coord','coord','Coord ','{{Coord ','{{coord ','coord ']: #différentes possibilités de débuts pour les coordonnées
+                    i+=1
+                
+                longueur = None
+                
+                for symb in ['W','W}}','W}} {{coord','E','E}}']:    ##différentes chaînes de caractères marquant la fin de la chaîne des données utiles
+                    if symb in L:
+                        longueur=L.index(symb)+1    #position des données dans la chaîne (grossièrement)
+                
+                    
+                if longueur==i+7:   #précision à la minute
+                    lat_et_long={}
+                    coord=[float(L[i+1]),float(L[i+2]),L[i+3],float(L[i+4]),float(L[i+5]),L[i+6]]
+                    coord[1]=coord[1]/60   #conversion des minutes
+                    coord[4]=coord[4]/60
+                    lat= coord[0]+coord[1]
+                    long= coord[3]+coord[4]
+                    if coord[2]=='S':   #Conversion depuis le système sexiagésimal
+                        lat=-lat
+                    if coord[5] in ['W','W}} {{coord']: #Conversion depuis le système sexiagésimal
+                        long=-long
+                    lat_et_long['latitude']=lat   #Création d'un dictionnaire
+                    lat_et_long['longitude']=long
+                    return lat_et_long
+                
+                elif longueur==i+9:     #précision à la seconde
+                    lat_et_long={}
+                    coord=[float(L[i+1]),float(L[i+2]),L[i+4],float(L[i+5]),float(L[i+6]),L[i+8]]
+                    coord[1]=coord[1]/60   #conversion des minutes
+                    coord[4]=coord[4]/60
+                    lat= coord[0]+coord[1]
+                    long= coord[3]+coord[4]
+                    if coord[2]=='S':   #Conversion depuis le système sexiagésimal
+                        lat=-lat
+                    if coord[5]=='O':   #Conversion depuis le système sexiagésimal
+                        long=-long
+                    lat_et_long['latitude']=lat
+                    lat_et_long['longitude']=long
+                    return lat_et_long
+                else:
+                    return {'latitude': -17.7450363, 'longitude': 168.315741}
+                
+                
+                
+                
+                
+            ############ # faire densité, superficie, langues, leader
