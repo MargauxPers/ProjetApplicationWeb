@@ -12,12 +12,22 @@ def get_name(info):
     return nom
 
 def get_capital(info):
-    info_capital=info['capital']                  
-    capitale_epuree1 = info_capital.split('[')    
-    capitale_epuree2=capitale_epuree1[2].split(']')         
-    capitale_epuree3=capitale_epuree2[0].split(',')
-    capitale=capitale_epuree3[0]
-    return capitale
+    # cas général
+    if 'capital' in info:
+        # parfois l'information récupérée comporte plusieurs lignes
+        # on remplace les retours à la ligne par un espace
+        capital = info['capital'].replace('\n',' ')
+        
+        # le nom de la capitale peut comporter des lettres, des espaces,
+        # ou l'un des caractères ',.()|- compris entre crochets [[...]]
+        m = re.match(".*?\[\[([\w\s',(.)|-]+)\]\]", capital)
+        
+        # on récupère le contenu des [[...]]
+        capital = m.group(1)
+        return capital      
+    # Aveu d'échec, on ne doit jamais se retrouver ici
+    print(' Could not fetch country capital {}'.format(info))
+    return None
 
 def get_currency(info):
     currency=''
