@@ -55,3 +55,5 @@ def get_currency(info):
         if population=='':
             return 'Data not available'%on met la population
         
+
+        # faire densité, long et lat capitale, superficie, langues, leader
