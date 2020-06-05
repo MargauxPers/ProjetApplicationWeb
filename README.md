@@ -18,4 +18,4 @@ Choix des informations utilisées :
  - IDH
  - Moyenne d'âge
  
- To do: Trouver une solution pour le get_langues, finir les fts get_les infos qu'on veut récupérer, faire la table SQLITE SA MEEEEEERRREEE
+ To do: Trouver une solution pour le get_langues, finir les fts get_les infos qu'on veut récupérer, faire la table SQLITE 
