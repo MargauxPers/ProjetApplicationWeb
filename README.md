@@ -6,11 +6,10 @@ Choix des informations utilisées :
  - Nom
  - Capitale
  - Longitude 
- - Lattitude
+ - Latitude
  - Densité
  - Superficie
  - Leader du pays 
  - Langues 
  - Monnaie 
  - IDH
- kjjjjklk,
