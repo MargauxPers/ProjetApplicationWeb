@@ -28,8 +28,8 @@ def get_currency(info):
             liste_currency=info_currency.split('[[')    #extraction de la donnée
             currency=liste_currency[1].split(']]')[0]
             return currency
-    if currency=='':
-        return 'Data not available'
+        if currency=='':
+            return 'Data not available'
     
     
     
@@ -42,5 +42,5 @@ def get_currency(info):
                 return 'Data not available' #Données compliquées à extraire
             else:
                 return info[liste[n]]
-    if population=='':
-        return 'Data not available'
+        if population=='':
+            return 'Data not available'
