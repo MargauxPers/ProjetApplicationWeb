@@ -53,4 +53,5 @@ def get_currency(info):
             else:
                 return info[liste[n]]
         if population=='':
-            return 'Data not available'
+            return 'Data not available'%on met la population
+        
