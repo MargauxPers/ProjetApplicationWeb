@@ -5,6 +5,12 @@ def get_info(country):
     page.get_parse(False)
     return page.data['infobox'] 
 
+
+def get_name(info):
+    donnees=info['conventional_long_name']
+    nom=donnees.split('{')[0]   #Pour isoler le nom le plus courant en cas de plusieurs noms existants
+    return nom
+
 def get_capital(info):
     info_capital=info['capital']                  
     capitale_epuree1 = info_capital.split('[')    
