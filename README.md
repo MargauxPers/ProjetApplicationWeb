@@ -13,3 +13,4 @@ Choix des informations utilisées :
  - Langues 
  - Monnaie 
  - IDH
+ - Moyenne d'âge
