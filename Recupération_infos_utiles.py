@@ -106,28 +106,29 @@ def get_coords(info):
                     return {'latitude': -17.7450363, 'longitude': 168.315741}
                 
                 
-def get_langues (info): #ne fonctionne pas encore
-    langues = ''
+
+def get_superficie(info):
+    sup = ''
+    area = ['area_km2'] #On crée une liste contenant les différentes possibilités de débuts pour la superficie
+    La = len(area)
+    for in in range(La):
+        if area[i] in info :
+            return info[area[i]]
+       if sup == '':        #Si la superficie n'est pas disponible
+        return "La superficie n'est pas disponible."
     
-    if 'official_languages' in info :
-        langues = info['official_languages']
-        # parfois l'information récupérée comporte plusieurs lignes
-        # on remplace les retours à la ligne par un espace
-        langues = info['official_languages'].replace('\n',' ')
-        langues = langues.split(':')[1]
-        langues = langues.split('hlist')[1]
-    
-        langues.strip('|{}')  
-        
-        # le nom de la capitale peut comporter des lettres, des espaces,
-        # ou l'un des caractères ',.()|- compris entre crochets [[...]]
-        print(langues)
-        m = re.match(".*?{}\[\[([\w\s',(.)|-]+)\]\]", langues)
-        print(m)
-        # on récupère le contenu des [[...]]
-        # langues = m.group(1)
-        
-        return langues                
+  
+def get_leader(info) :
+    leader = ''
+    l_leader = ['leader','leader_name1']
+    for elt in liste_leader : 
+        if elt in info : 
+            inf_l = info[elt]
+            list_leader = inf_l.split('[[')
+            leader = list_leader[1].split(']]')[0]  #On extrait les données
+            return leader
+    if leader == '':
+        return "Le nom du leader n'est pas disponible."
                 
                 
-            ############ # faire densité, superficie, langues, leader
+            ############ # faire densité, langues
