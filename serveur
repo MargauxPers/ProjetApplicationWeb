@@ -1,0 +1,11 @@
+import http.server
+import socketserver
+from urllib.parse import urlparse, parse_qs, unquote
+import json
+import sqlite3
+
+class RequestHandler(http.server.SimpleHTTPRequestHandler):
+  # sous-répertoire racine des documents statiques
+  static_dir = '/client'
+  # version du serveur
+  server_version = 'projet/0.1'
