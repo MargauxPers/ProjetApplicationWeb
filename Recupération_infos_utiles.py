@@ -178,21 +178,21 @@ Afrique=['Algeria','Angola','Benin','Botswana','Burkina_Faso','Burundi','Cameroo
          'Senegal','Seychelles','Sierra_Leone','Somalia','South_Africa','South_Sudan','Sudan','Tanzania',\
          'Tazania','The_Gambia','Togo','Tunisia','Uganda','Zambia','Zimbabwe']
 
-for pays in PAYS:
+for pays in Afrique:
     
-    # ouverture d'une connexion avec la base de données
-    conn = sqlite3.connect('pays_final3.sqlite')
+    # On ouvre une connexion avec la base de données
+    connection = sqlite3.connect('pays_final3.sqlite')
     
-    # préparation de la commande SQL
-    c = conn.cursor()
-    sql = 'INSERT INTO countries VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    # On prépare la commande SQL
+    comm = connection.cursor()
+    sql = 'INSERT INTO countries VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     
-    # les infos à enregistrer
+    # On récupère et on enregistre les infos
     info=get_info(pays)
-    name = get_name(info)
-    capital = get_capital(info)
-    currency = get_currency(info)
-    lat_et_long = get_coords(info)
+    nom = get_name(info)
+    capitale = get_capital(info)
+    monnaie = get_currency(info)
+    coordonnees = get_coords(info)
     superficie = get_superficie(info)
     leader=get_leader(info)
     langues = get_langues(info)
@@ -200,6 +200,6 @@ for pays in PAYS:
     image=pays+'.png'  #pour afficher les images côté client
     
     
-    # soumission de la commande (noter que le second argument est un tuple)
-    c.execute(sql,(pays, name, capital, titre_leader, leader, population, area, GDP, HDI, GINI, currency, callingcode, lat_et_long['latitude'],lat_et_long['longitude'],image))
-    conn.commit()
+    # On soumet de la commande (On notera que le second argument est un tuple)
+    comm.execute(sql,(pays, nom, capitale, leader, population, superficie, HDI, monnaie, coordonnes['latitude'],coordonnees['longitude'],image))
+    connection.commit()
