@@ -191,16 +191,12 @@ for pays in PAYS:
     info=get_info(pays)
     name = get_name(info)
     capital = get_capital(info)
+    currency = get_currency(info)
     lat_et_long = get_coords(info)
-    area=get_superficie(info)
-    population=get_population(info)
-    currency=get_currency(info)
-    HDI=get_HDI(info)
-    callingcode=get_callingcode(info)
-    GINI=get_Gini(info)
-    GDP=get_GDP(info)
-    titre_leader=get_titre_leader(info)
+    superficie = get_superficie(info)
     leader=get_leader(info)
+    langues = get_langues(info)
+    HDI=get_HDI(info)   
     image=pays+'.png'  #pour afficher les images côté client
     
     
