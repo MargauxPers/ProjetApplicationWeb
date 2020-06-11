@@ -128,23 +128,91 @@ def get_leader(info) :
         return "Le nom du leader n'est pas disponible."               # Sinom introuvable
     
 
-def get_langues (info):                                               #ne fonctionne pas encore
+## Attention pays à problèmes :
+## Mauritus : récupérer entre <br> et {{ x 
+## South Africa : de "constitution" à <br>
+
+def get_langues (info):
     langues = ''
-
-    if 'official_languages' in info :
+    
+    if get_name(info) == "State of Eritrea" : 
+        langues = info['national_languages']
+        
+    elif  get_name(info) == "Republic of Burundi" or get_name(info) == "United Republic of Tanzania": 
+        langues = info['languages']
+        
+    
+    elif 'official_languages' in info :
         langues = info['official_languages']
-        langues = info['official_languages'].replace('\n',' ')        # parfois l'information récupérée comporte plusieurs lignes
-        langues = langues.split(':')[1]                               # on remplace les retours à la ligne par un espace
+        # parfois l'information récupérée comporte plusieurs lignes
+        # on remplace les retours à la ligne par un espace
+        langues = info['official_languages'].replace('\n',' ')
+        
+    print('languesinit', langues)
+    if ':' in langues :
+        langues = langues.split(':')[1]
+        
+    if 'hlist' in langues : 
         langues = langues.split('hlist')[1]
-        langues.strip('|{}')  
+        
+    if 'unbulleted list' in langues :
+        langues = langues.split('unbulleted list')[1]
+        
+    if get_name(info) == 'Republic of Mauritus' :
+        print("checkM")
+        langues = langues.split('<br>')[1:3]
+        print(langues)
+        
+    if get_name(info) == 'Republic of South Africa' :
+        print("checkSA")
+        langues = langues.split('"constitution"')[1]
+        langues = langues.split('<br>')[0]
+        print(langues)
+        
+    
+    langues_list = langues.split('[[')
+    langues_txt = ''
+        
+    def aux (chaine_cara) :
+        B = False
+            
+        for x in chaine_cara :
+            if x.isalpha() :
+                return True
+                
+        return (B)
+         
+    for k in range(len(langues_list)-1):
+        if not aux(langues_list[k]) :
+            del langues_list[k]
+        
+    print("languelist", langues_list)
+             
+    for k in range(len(langues_list)):
+        
+        if '|' in langues_list[k] :
+            if aux(langues_list[k].split('|')[1]) :
+                langues_list[k] = langues_list[k].split('|')[1]
+                
+            else : langues_list[k] = langues_list[k].split('|')[0]
+                
+        if ']]' in langues_list[k] :
+            langues_list[k] = langues_list[k].split(']]')[0]
+        
+        if '{{' in langues_list[k] :
+            langues_list[k] = langues_list[k].split('{{')[0]
+            
+        if 'title=' in langues_list[k] :
+            langues_list[k] = langues_list[k].split('title=')[1]
+            
+        if k < (len(langues_list)-1) :
+            langues_txt += langues_list[k] + ', '
+                
+        else :
+            langues_txt += langues_list[k]
 
-        print(langues)                                                # le nom de la capitale peut comporter des lettres, des espaces,
-        m = re.match(".*?{}\[\[([\w\s',(.)|-]+)\]\]", langues)        # ou l'un des caractères ',.()|- compris entre crochets [[...]]
-        print(m)
-        # on récupère le contenu des [[...]]
-        # langues = m.group(1)
-
-        return langues     
+        
+    return langues_txt    
                 
         
  def get_HDI(info):
