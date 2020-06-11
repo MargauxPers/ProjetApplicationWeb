@@ -156,13 +156,13 @@ def get_langues (info): #ne fonctionne pas encore
                 
         
  def get_HDI(info):
-    HDI=''
-    liste=['HDI']
+    hdi=''
+    liste=['hdi']
     for elt in liste:
         if elt in info:
-            HDI=info[elt]   #chaîne de caractères des données
-            return HDI
-        if HDI=='':
+            hdi=info[elt]   #chaîne de caractères des données
+            return hdi
+        if hdi=='':
         return 'Data not available'
                 
             ############ # faire densité, langues
