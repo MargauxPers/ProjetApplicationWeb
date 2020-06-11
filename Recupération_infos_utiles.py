@@ -177,3 +177,33 @@ Afrique=['Algeria','Angola','Benin','Botswana','Burkina_Faso','Burundi','Cameroo
          'Mozambique','Namibia','Niger','Nigeria','Republic_of_the_Congo','Rwanda','Sao_Tomé_and_Principe',\
          'Senegal','Seychelles','Sierra_Leone','Somalia','South_Africa','South_Sudan','Sudan','Tanzania',\
          'Tazania','The_Gambia','Togo','Tunisia','Uganda','Zambia','Zimbabwe']
+
+for pays in PAYS:
+    
+    # ouverture d'une connexion avec la base de données
+    conn = sqlite3.connect('pays_final3.sqlite')
+    
+    # préparation de la commande SQL
+    c = conn.cursor()
+    sql = 'INSERT INTO countries VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    
+    # les infos à enregistrer
+    info=get_info(pays)
+    name = get_name(info)
+    capital = get_capital(info)
+    lat_et_long = get_coords(info)
+    area=get_superficie(info)
+    population=get_population(info)
+    currency=get_currency(info)
+    HDI=get_HDI(info)
+    callingcode=get_callingcode(info)
+    GINI=get_Gini(info)
+    GDP=get_GDP(info)
+    titre_leader=get_titre_leader(info)
+    leader=get_leader(info)
+    image=pays+'.png'  #pour afficher les images côté client
+    
+    
+    # soumission de la commande (noter que le second argument est un tuple)
+    c.execute(sql,(pays, name, capital, titre_leader, leader, population, area, GDP, HDI, GINI, currency, callingcode, lat_et_long['latitude'],lat_et_long['longitude'],image))
+    conn.commit()
