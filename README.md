@@ -15,7 +15,7 @@ Choix des informations utilisées :
  - Leader du pays ok
  - Langues (à finir)
  - Monnaie ok
- - IDH à faire
+ - IDH ok
  - Moyenne d'âge à faire
  
  To do: Trouver une solution pour le get_langues, finir les fts get_les infos qu'on veut récupérer, faire la table SQLITE 
