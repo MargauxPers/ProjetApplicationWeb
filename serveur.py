@@ -39,3 +39,23 @@ On surcharge la méthode qui traite les requêtes GET
 #On renvoie désormais les informations de chaque pays au format json
 
 def send_json_country(self,country) :
+  
+  
+  
+def data_loc(self) :
+    #Préparation de la requête SQL
+    c = conn.cursor()
+    sql = 'SELECT * from countries'
+
+    #Récupération de l'information
+    c.execute(sql)
+    #Sélection des données présentes dans la base de donnée
+    r = c.fetchall()
+    data = []
+    for i in r :
+      wp = i['wp']
+      lat = i['latitude']
+      lon = i['longitude']
+      name = i['name']
+      data.append({'wp': wp, 'lat': lat, 'lon': lon, 'name': name})
+    return data
