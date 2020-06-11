@@ -114,7 +114,7 @@ def get_superficie(info):
     for in in range(La):
         if area[i] in info :
             return info[area[i]]
-       if sup == '':        #Si la superficie n'est pas disponible
+        if sup == '':        #Si la superficie n'est pas disponible
         return "La superficie n'est pas disponible."
     
   
@@ -127,7 +127,7 @@ def get_leader(info) :
             list_leader = inf_l.split('[[')
             leader = list_leader[1].split(']]')[0]  #On extrait les données
             return leader
-    if leader == '':
+        if leader == '':
         return "Le nom du leader n'est pas disponible."
     
 
@@ -154,5 +154,15 @@ def get_langues (info): #ne fonctionne pas encore
 
         return langues     
                 
+        
+ def get_HDI(info):
+    HDI=''
+    liste=['HDI']
+    for elt in liste:
+        if elt in info:
+            HDI=info[elt]   #chaîne de caractères des données
+            return HDI
+        if HDI=='':
+        return 'Data not available'
                 
             ############ # faire densité, langues
