@@ -6,15 +6,15 @@ But de l'activité :
 Créer une interface présentant des informations générales sur l'ensemble des pays du continent africain. L'élément principal de l'interface sera une carte glissante avec des POI correspondant à la capitale de chaque pays.
 
 Choix des informations utilisées : 
- - Nom
- - Capitale
- - Longitude 
- - Latitude
- - Densité
+ - Nom ok
+ - Capitale ok
+ - Longitude ok
+ - Latitude ok
+ - Densité ok
  - Superficie
- - Leader du pays 
- - Langues 
- - Monnaie 
+ - Leader du pays ok
+ - Langues (à finir)
+ - Monnaie ok
  - IDH
  - Moyenne d'âge
  
