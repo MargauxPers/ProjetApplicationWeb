@@ -9,3 +9,27 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
   static_dir = '/client'
   # version du serveur
   server_version = 'projet/0.1'
+
+On surcharge la méthode qui traite les requêtes GET
+  #
+  def do_GET(self):
+
+    # on récupère les paramètres
+    self.init_params()
+
+    # le chemin d'accès commence par "location"
+    if self.path_info[0] == "location":
+      data = self.data_loc()
+      self.send_json(data)
+
+    # le chemin d'accès commence par "description"
+    elif self.path_info[0] == "description":
+      self.send_json_country(self.path_info[1])
+
+    # le chemin d'accès commence par "service"
+    elif self.path_info[0] == "service":
+      self.send_html('<p>Path info : <code>{}</p><p>Chaîne de requête : <code>{}</code></p>'.format('/'.join(self.path_info),self.query_string));
+
+    # ou pas...
+    else:
+      self.send_static()
