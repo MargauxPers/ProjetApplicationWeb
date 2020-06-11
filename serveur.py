@@ -34,6 +34,76 @@ On surcharge la méthode qui traite les requêtes GET
     else:
       self.send_static()
       
+ # On surcharge la méthode qui traite les requêtes HEAD
+  #
+  def do_HEAD(self):
+      self.send_static()
+
+  def send_static(self):
+    # on modifie le chemin d'accès en insérant un répertoire préfixe
+    self.path = self.static_dir + self.path
+
+    # on appelle la méthode parent (do_GET ou do_HEAD)
+    # à partir du verbe HTTP (GET ou HEAD)
+    if (self.command=='HEAD'):
+        http.server.SimpleHTTPRequestHandler.do_HEAD(self)
+    else:
+        http.server.SimpleHTTPRequestHandler.do_GET(self)
+
+
+  #
+  #On envoie des données en format html
+  #
+  def send_html(self,content):
+     headers = [('Content-Type','text/html;charset=utf-8')]
+     html = '<!DOCTYPE html><title>{}</title><meta charset="utf-8">{}'.format(self.path_info[0],content)
+     self.send(html,headers)
+
+  #
+  #On envoie des données qui sont en format json
+  #
+  def send_json(self,data,headers=[]):
+    #On convertit nos données de format utf-8 en bits
+    #json.dumps permet de transformer data en str pour le convertir en bits
+    body = bytes(json.dumps(data),'utf-8')
+    #On envoie la ligne de statut
+    self.send_response(200)
+    #On envoie les lignes d'entètes
+    self.send_header('Content-Type','application/json')
+    self.send_header('Content-Length',int(len(body)))
+    [self.send_header(*t) for t in headers]
+    self.end_headers()
+    #On envoie le corps de la réponse
+    self.wfile.write(body)
+
+
+  #
+  # on analyse la requête pour initialiser nos paramètres
+  #
+  def init_params(self):
+    #On analyse l'adresse
+    info = urlparse(self.path)
+    #On récupère l'url sans /
+    self.path_info = [unquote(v) for v in info.path.split('/')[1:]]
+    #On récupère la requète de l'url
+    self.query_string = info.query
+    #On analyse la requète
+    self.params = parse_qs(info.query)
+
+    #Récupération du corps
+    length = self.headers.get('Content-Length')
+    ctype = self.headers.get('Content-Type')
+    if length:
+      self.body = str(self.rfile.read(int(length)),'utf-8')
+      if ctype == 'application/x-www-form-urlencoded' :
+        self.params = parse_qs(self.body)
+    else:
+      self.body = ''
+
+    #Traces
+    print('info_path =',self.path_info)
+    print('body =',length,ctype,self.body)
+    print('params =', self.params)
       
 
  #On renvoie désormais les informations de chaque pays au format json
