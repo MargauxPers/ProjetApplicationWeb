@@ -13,9 +13,9 @@ Choix des informations utilisées :
  - Densité ok
  - Superficie ok
  - Leader du pays ok
- - Langues (à finir)
+ - Langues ok
  - Monnaie ok
  - IDH ok
  - Moyenne d'âge à faire
  
- To do: Trouver une solution pour le get_langues, finir les fts get_les infos qu'on veut récupérer, faire la table SQLITE 
+ To do: (Trouver une solution pour le get_langues), finir les fts get_les infos qu'on veut récupérer => faire fonction moyenne d'âge, faire la table SQLITE 
