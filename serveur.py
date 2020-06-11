@@ -39,6 +39,19 @@ On surcharge la méthode qui traite les requêtes GET
 #On renvoie désormais les informations de chaque pays au format json
 
 def send_json_country(self,country) :
+  # on récupère le pays depuis la base de données
+    r = self.db_get_country(country)
+
+    # on n'a pas trouvé le pays demandé
+    if r == None:
+      self.send_error(404,'Country not found')
+
+    # on renvoie un dictionnaire au format JSON
+    else :
+      #k correspond à la clef primaire de notre base de donnée
+      data = {k:r[k] for k in r.keys()}
+      headers = [('Content-Type','application/json')]
+      self.send_json(data,headers)
   
   
   
