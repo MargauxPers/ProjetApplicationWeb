@@ -72,3 +72,6 @@ def data_loc(self) :
       name = i['name']
       data.append({'wp': wp, 'lat': lat, 'lon': lon, 'name': name})
     return data
+  
+  
+  
