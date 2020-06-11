@@ -129,6 +129,30 @@ def get_leader(info) :
             return leader
     if leader == '':
         return "Le nom du leader n'est pas disponible."
+    
+
+def get_langues (info): #ne fonctionne pas encore
+    langues = ''
+
+    if 'official_languages' in info :
+        langues = info['official_languages']
+        # parfois l'information récupérée comporte plusieurs lignes
+        # on remplace les retours à la ligne par un espace
+        langues = info['official_languages'].replace('\n',' ')
+        langues = langues.split(':')[1]
+        langues = langues.split('hlist')[1]
+
+        langues.strip('|{}')  
+
+        # le nom de la capitale peut comporter des lettres, des espaces,
+        # ou l'un des caractères ',.()|- compris entre crochets [[...]]
+        print(langues)
+        m = re.match(".*?{}\[\[([\w\s',(.)|-]+)\]\]", langues)
+        print(m)
+        # on récupère le contenu des [[...]]
+        # langues = m.group(1)
+
+        return langues     
                 
                 
             ############ # faire densité, langues
