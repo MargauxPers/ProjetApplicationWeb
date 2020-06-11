@@ -11,11 +11,11 @@ Choix des informations utilisées :
  - Longitude ok
  - Latitude ok
  - Densité ok
- - Superficie
+ - Superficie ok
  - Leader du pays ok
  - Langues (à finir)
  - Monnaie ok
- - IDH
- - Moyenne d'âge
+ - IDH à faire
+ - Moyenne d'âge à faire
  
  To do: Trouver une solution pour le get_langues, finir les fts get_les infos qu'on veut récupérer, faire la table SQLITE 
