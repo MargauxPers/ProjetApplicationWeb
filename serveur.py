@@ -11,10 +11,10 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
   server_version = 'projet/0.1'
 
 On surcharge la méthode qui traite les requêtes GET
-  #
+   #
   def do_GET(self):
 
-    # on récupère les paramètres
+     # on récupère les paramètres
     self.init_params()
 
     # le chemin d'accès commence par "location"
@@ -36,7 +36,7 @@ On surcharge la méthode qui traite les requêtes GET
       
       
 
-#On renvoie désormais les informations de chaque pays au format json
+ #On renvoie désormais les informations de chaque pays au format json
 
 def send_json_country(self,country) :
   
