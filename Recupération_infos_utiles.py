@@ -223,12 +223,12 @@ def get_HDI(info):
     
 Afrique=['Algeria','Angola','Benin','Botswana','Burkina_Faso','Burundi','Cameroon',\
          'Cape_Verde','Central_African_Republic','Chad','Comoros','Democratic_Republic_of_the_Congo',\
-         'Djibouti','Egypt','Equatorail_Guinea','Eritrea','Eswatini',\
+         'Djibouti','Egypt','Equatorial_Guinea','Eritrea','Eswatini',\
          'Ethiopia','Gabon','Ghana','Guinea','Guinea_Bissau','Ivory_Coast',\
          'Kenya','Lesotho','Liberia','Libya','Madagascar','Malawi','Mali','Mauritania','Mauritus','Morocco',\
          'Mozambique','Namibia','Niger','Nigeria','Republic_of_the_Congo','Rwanda','Sao_Tomé_and_Principe',\
          'Senegal','Seychelles','Sierra_Leone','Somalia','South_Africa','South_Sudan','Sudan','Tanzania',\
-         'Tazania','The_Gambia','Togo','Tunisia','Uganda','Zambia','Zimbabwe']
+         'The_Gambia','Togo','Tunisia','Uganda','Zambia','Zimbabwe']
 
 for pays in Afrique:
     
