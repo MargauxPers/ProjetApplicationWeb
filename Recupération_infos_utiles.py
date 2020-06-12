@@ -38,8 +38,8 @@ def get_monnaie(info):
             liste_monnaie=info_monnaie.split('[[')           #extraction de la donnée
             monnaie=liste_monnaie[1].split(']]')[0]
             return monnaie
-        if monnaie=='':
-            return 'Data not available'
+    if monnaie=='':
+        return 'Data not available'
     
     
     
@@ -130,17 +130,17 @@ def get_leader(info) :
             list_leader = inf_l.split('[[')
             leader = list_leader[1].split(']]')[0]                    #On extrait les données
             return leader
-        if leader == '':
-            return "Le nom du leader n'est pas disponible."               # Sinom introuvable
+     if leader == '':
+        return "Le nom du leader n'est pas disponible."               # Sinom introuvable
 
 
 def get_langues (info):
     langues = ''
     
-    if get_name(info) == "State of Eritrea" : 
+    if get_nom(info) == "State of Eritrea" : 
         langues = info['national_languages']
         
-    elif  get_name(info) == "Republic of Burundi" or get_name(info) == "United Republic of Tanzania": 
+    elif  get_nom(info) == "Republic of Burundi" or get_nom(info) == "United Republic of Tanzania": 
         langues = info['languages']
         
     
@@ -159,11 +159,11 @@ def get_langues (info):
     if 'unbulleted list' in langues :
         langues = langues.split('unbulleted list')[1]
         
-    if get_name(info) == 'Republic of Mauritius' :
+    if get_nom(info) == 'Republic of Mauritius' :
         langues_bis = langues.split('<br>')[1] + langues.split('<br>')[2]
         langues = langues_bis.split('{{')[0] + (langues_bis.split('}}')[1]).split('{{')[0]
         
-    if get_name(info) == 'Republic of South Africa' :
+    if get_nom(info) == 'Republic of South Africa' :
         langues = langues.split('"constitution"')[1]
         langues = langues.split('<br/>')[0]
         
