@@ -102,10 +102,10 @@ def get_coords(info):
                     lat_et_long['longitude']=long
                     return lat_et_long
                 
-                elif get_name(info) == 'Republic of Benin' :
+                elif get_nom(info) == 'Republic of Benin' :
                     return {'latitude': 6.4833333, 'longitude': 2.6} #pour le Benin où les données n'existent pas sur la page Wikipédia
                
-                elif get_name(info) == 'Republic of Mauritius' :
+                elif get_nom(info) == 'Republic of Mauritius' :
                     return {'latitude': 20.2, 'longitude': 57.5}
                 
 
@@ -158,11 +158,11 @@ def get_langues (info):
     if 'unbulleted list' in langues :
         langues = langues.split('unbulleted list')[1]
         
-    if get_name(info) == 'Republic of Mauritius' :
+    if get_nom(info) == 'Republic of Mauritius' :
         langues_bis = langues.split('<br>')[1] + langues.split('<br>')[2]
         langues = langues_bis.split('{{')[0] + (langues_bis.split('}}')[1]).split('{{')[0]
         
-    if get_name(info) == 'Republic of South Africa' :
+    if get_nom(info) == 'Republic of South Africa' :
         langues = langues.split('"constitution"')[1]
         langues = langues.split('<br/>')[0]
         
