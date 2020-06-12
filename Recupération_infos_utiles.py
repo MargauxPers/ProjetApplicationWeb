@@ -60,7 +60,7 @@ def get_coords(info):
                 L=info[elt]                                 #chaîne de caractères des données
                 L=L.split('|')                              #début de l'extraction des données
                 i=0
-                while L[i] not in ['Coord','{{Coord','{{coord','coord','Coord ','{{Coord ','{{coord ','coord ']: #différentes possibilités de débuts pour les coordonnées
+                while i < (len(L)) and  L[i] not in ['Coord','{{Coord','{{coord','coord','Coord ','{{Coord ','{{coord ','coord ']: #différentes possibilités de débuts pour les coordonnées
                     i+=1
                 
                 longueur = None
@@ -99,9 +99,12 @@ def get_coords(info):
                     lat_et_long['latitude']=lat
                     lat_et_long['longitude']=long
                     return lat_et_long
-                else:
-                    return {'latitude': -17.7450363, 'longitude': 168.315741}
                 
+                elif get_name(info) == 'Republic of Benin' :
+                    return {'latitude': 6.4833333, 'longitude': 2.6} #pour le Benin où les données n'existent pas sur la page Wikipédia
+               
+                elif get_name(info) == 'Republic of Mauritius' :
+                    return {'latitude': 20.2, 'longitude': 57.5}
                 
 
 def get_superficie(info):
