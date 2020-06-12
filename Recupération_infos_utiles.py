@@ -11,6 +11,8 @@ def get_nom(info):
     donnees=info['conventional_long_name']
     nom=donnees.split('{')[0]                                #On isole le nom le plus courant en cas de plusieurs noms existants
     return nom
+
+
 import re
 def get_capitale(info):
     # cas général
@@ -111,11 +113,11 @@ def get_superficie(info):
     sup = ''
     aire = ['area_km2']                                             #On crée une liste contenant les différentes 
     La = len(aire)                                                  #possibilités de débuts pour la superficie
-    for elt in range(La):
-            if aire[i] in info :
-                return info[aire[i]]
-            if sup == '':                                               #Si la superficie n'est pas disponible
-                return "La superficie n'est pas disponible."
+    for i in range(La):
+        if aire[i] in info :
+            return info[aire[i]]
+        if sup == '':                                               #Si la superficie n'est pas disponible 
+            return "La superficie n'est pas disponible."
     
   
 def get_leader(info) :
