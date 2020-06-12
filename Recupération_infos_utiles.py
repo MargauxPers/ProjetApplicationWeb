@@ -1,4 +1,5 @@
 import wptools
+import re
 #---------------------------------------------------Definition des fonctions-------------------------------------------------
 
 def get_information(country):
