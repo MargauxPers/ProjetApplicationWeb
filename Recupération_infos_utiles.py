@@ -40,7 +40,7 @@ def get_monnaie(info):
     
     
     
- def get_population(info):
+def get_population(info):
     population=''
     liste=['population_census','population_estimate']       #différentes possibilités de noms pour le dictionnaire
     for n in range (len(liste)):
@@ -108,11 +108,11 @@ def get_superficie(info):
     sup = ''
     aire = ['area_km2']                                             #On crée une liste contenant les différentes 
     La = len(aire)                                                  #possibilités de débuts pour la superficie
-    for in in range(La):
-        if aire[i] in info :
-            return info[aire[i]]
-        if sup == '':                                               #Si la superficie n'est pas disponible
-        return "La superficie n'est pas disponible."
+    for elt in range(La):
+            if aire[i] in info :
+                return info[aire[i]]
+            if sup == '':                                               #Si la superficie n'est pas disponible
+                return "La superficie n'est pas disponible."
     
   
 def get_leader(info) :
@@ -125,8 +125,13 @@ def get_leader(info) :
             leader = list_leader[1].split(']]')[0]                    #On extrait les données
             return leader
         if leader == '':
-        return "Le nom du leader n'est pas disponible."               # Sinom introuvable
+            return "Le nom du leader n'est pas disponible."               # Sinom introuvable
     
+
+## Attention pays à problèmes :
+## Mauritus : récupérer entre <br> et {{ x 
+## South Africa : de "constitution" à <br>
+
 
 def get_langues (info):
     langues = ''
@@ -200,12 +205,8 @@ def get_langues (info):
                 
         else :
             langues_txt += langues_list[k]
-
         
-    return langues_txt  
-                
-        
- def get_HDI(info):
+def get_HDI(info):
     HDI=''
     liste=['HDI']
     for elt in liste:
@@ -213,7 +214,7 @@ def get_langues (info):
             HDI=info[elt]                                              #chaîne de caractères des données
             return HDI
         if HDI=='':
-        return 'Data not available'
+            return 'Data not available'
                 
             ############ # faire densité, langues
            
@@ -221,21 +222,23 @@ def get_langues (info):
     
 Afrique=['Algeria','Angola','Benin','Botswana','Burkina_Faso','Burundi','Cameroon',\
          'Cape_Verde','Central_African_Republic','Chad','Comoros','Democratic_Republic_of_the_Congo',\
-         'Djibouti','Egypt','Equatorial_Guinea','Eritrea','Eswatini',\
+         'Djibouti','Egypt','Equatorail_Guinea','Eritrea','Eswatini',\
          'Ethiopia','Gabon','Ghana','Guinea','Guinea_Bissau','Ivory_Coast',\
          'Kenya','Lesotho','Liberia','Libya','Madagascar','Malawi','Mali','Mauritania','Mauritus','Morocco',\
          'Mozambique','Namibia','Niger','Nigeria','Republic_of_the_Congo','Rwanda','Sao_Tomé_and_Principe',\
-         'Senegal','Seychelles','Sierra_Leone','Somalia','South_Africa','South_Sudan','Sudan'\
-         'Tanzania','The_Gambia','Togo','Tunisia','Uganda','Zambia','Zimbabwe']
+         'Senegal','Seychelles','Sierra_Leone','Somalia','South_Africa','South_Sudan','Sudan','Tanzania',\
+         'Tazania','The_Gambia','Togo','Tunisia','Uganda','Zambia','Zimbabwe']
 
-for pays in PAYS:
+for pays in Afrique:
+    
+    import sqlite3
     
     # ouverture d'une connexion avec la base de données
-    conn = sqlite3.connect('pays_final3.sqlite')
+    conn = sqlite3.connect('pays_afrique3.sqlite')
     
     # préparation de la commande SQL
     c = conn.cursor()
-    sql = 'INSERT INTO countries VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    sql = 'INSERT INTO countries VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     
     # les infos à enregistrer
     info=get_information(pays)
