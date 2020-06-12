@@ -11,7 +11,7 @@ def get_nom(info):
     donnees=info['conventional_long_name']
     nom=donnees.split('{')[0]                                #On isole le nom le plus courant en cas de plusieurs noms existants
     return nom
-
+import re
 def get_capitale(info):
     # cas général
     if 'capital' in info:                                    # Si l'information récupérée comporte plusieurs lignes
