@@ -129,11 +129,6 @@ def get_leader(info) :
             return leader
         if leader == '':
             return "Le nom du leader n'est pas disponible."               # Sinom introuvable
-    
-
-## Attention pays à problèmes :
-## Mauritus : récupérer entre <br> et {{ x 
-## South Africa : de "constitution" à <br>
 
 
 def get_langues (info):
