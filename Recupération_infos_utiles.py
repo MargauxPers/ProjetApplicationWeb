@@ -254,6 +254,7 @@ for pays in PAYS:
     monnaie = get_monnaie(info)
     lat_et_long = get_coords(info)
     superficie = get_superficie(info)
+    population =get_population(info)
     leader=get_leader(info)
     langues = get_langues(info)
     HDI=get_HDI(info)   
@@ -261,5 +262,5 @@ for pays in PAYS:
     
     
     # soumission de la commande (noter que le second argument est un tuple)
-    c.execute(sql,(pays, nom, capitale, titre_leader, leader, population, aire, GDP, HDI, GINI, monnaie, callingcode, lat_et_long['latitude'],lat_et_long['longitude'],image))
+    c.execute(sql,(pays, nom, capitale, leader, population, superficie, HDI, monnaie, langues, lat_et_long['latitude'],lat_et_long['longitude'],image))
     conn.commit()
