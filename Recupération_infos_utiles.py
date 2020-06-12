@@ -136,10 +136,10 @@ def get_leader(info) :
 def get_langues (info):
     langues = ''
     
-    if get_name(info) == "State of Eritrea" : 
+    if get_nom(info) == "State of Eritrea" : 
         langues = info['national_languages']
         
-    elif  get_name(info) == "Republic of Burundi" or get_name(info) == "United Republic of Tanzania": 
+    elif  get_nom(info) == "Republic of Burundi" or get_nom(info) == "United Republic of Tanzania": 
         langues = info['languages']
         
     
