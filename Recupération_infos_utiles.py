@@ -109,6 +109,9 @@ def get_coords(info):
                 elif get_nom(info) == 'Republic of Mauritius' :
                     return {'latitude': 20.2, 'longitude': 57.5}
                 
+                else : #Pour l'Afrique du Sud
+                    return {'latitude' : -25.7333333, 'longitude':28.1833333}
+                
 
 def get_superficie(info):
     sup = ''
