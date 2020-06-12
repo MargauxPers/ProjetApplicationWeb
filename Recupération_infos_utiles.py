@@ -128,10 +128,6 @@ def get_leader(info) :
         return "Le nom du leader n'est pas disponible."               # Sinom introuvable
     
 
-## Attention pays à problèmes :
-## Mauritus : récupérer entre <br> et {{ x 
-## South Africa : de "constitution" à <br>
-
 def get_langues (info):
     langues = ''
     
@@ -148,7 +144,6 @@ def get_langues (info):
         # on remplace les retours à la ligne par un espace
         langues = info['official_languages'].replace('\n',' ')
         
-    print('languesinit', langues)
     if ':' in langues :
         langues = langues.split(':')[1]
         
@@ -158,16 +153,13 @@ def get_langues (info):
     if 'unbulleted list' in langues :
         langues = langues.split('unbulleted list')[1]
         
-    if get_name(info) == 'Republic of Mauritus' :
-        print("checkM")
-        langues = langues.split('<br>')[1:3]
-        print(langues)
+    if get_name(info) == 'Republic of Mauritius' :
+        langues_bis = langues.split('<br>')[1] + langues.split('<br>')[2]
+        langues = langues_bis.split('{{')[0] + (langues_bis.split('}}')[1]).split('{{')[0]
         
     if get_name(info) == 'Republic of South Africa' :
-        print("checkSA")
         langues = langues.split('"constitution"')[1]
-        langues = langues.split('<br>')[0]
-        print(langues)
+        langues = langues.split('<br/>')[0]
         
     
     langues_list = langues.split('[[')
@@ -185,8 +177,6 @@ def get_langues (info):
     for k in range(len(langues_list)-1):
         if not aux(langues_list[k]) :
             del langues_list[k]
-        
-    print("languelist", langues_list)
              
     for k in range(len(langues_list)):
         
@@ -212,7 +202,7 @@ def get_langues (info):
             langues_txt += langues_list[k]
 
         
-    return langues_txt    
+    return langues_txt  
                 
         
  def get_HDI(info):
