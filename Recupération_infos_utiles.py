@@ -123,7 +123,7 @@ def get_superficie(info):
 def get_leader(info) :
     leader = ''
     l_leader = ['leader','leader_name1']
-    for elt in liste_leader : 
+    for elt in l_leader : 
         if elt in info : 
             inf_l = info[elt]
             list_leader = inf_l.split('[[')
