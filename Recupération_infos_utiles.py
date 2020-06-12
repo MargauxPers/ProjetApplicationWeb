@@ -31,7 +31,7 @@ def get_capitale(info):
 
 def get_monnaie(info):
     monnaie=''
-    liste=['monnaie']
+    liste=['currency']
     for elt in liste:
         if elt in info:
             info_monnaie=info[elt]                           #chaîne de caractères des données
