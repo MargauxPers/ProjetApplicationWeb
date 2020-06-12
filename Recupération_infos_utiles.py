@@ -17,7 +17,7 @@ def get_capitale(info):
     if 'capital' in info:                                    # Si l'information récupérée comporte plusieurs lignes
         capitale = info['capital'].replace('\n',' ')         # on remplace les retours à la ligne par un espace
         
-        m = re.match(".*?\[\[([\w\s',(.)|-]+)\]\]", capital) # le nom de la capitale peut comporter des lettres, des espaces,
+        m = re.match(".*?\[\[([\w\s',(.)|-]+)\]\]", capitale) # le nom de la capitale peut comporter des lettres, des espaces,
                                                              # ou l'un des caractères ',.()|- compris entre crochets [[...]]
         
         capitale = m.group(1)                                # on récupère le contenu des [[...]]
