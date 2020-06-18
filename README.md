@@ -20,7 +20,7 @@ Choix des informations utilisées :
  
  Table SQLITE ok
  rendu :
- CDC 
+ CDC ok
  notice 
  difficultés 
  video
