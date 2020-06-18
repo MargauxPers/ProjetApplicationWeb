@@ -21,7 +21,7 @@ Choix des informations utilisées :
  Table SQLITE ok
  rendu :
  CDC ok
- notice 
+ notice ok
  difficultés 
  video
  relation serveur client
