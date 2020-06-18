@@ -1,0 +1,208 @@
+<!-- Fichier HTML -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!-- On crée le "head" en ajoutant fichiers associés au document HTML-->
+
+<head>
+
+  <title>Countries</title>
+  <meta charset="utf-8">
+  <script src="leaflet.js"></script>
+  <link rel="stylesheet" type="text/css" href="leaflet.css"/>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> <!-- Ce fichier servivra pour la police utilisée dans la page web -->
+
+</head>
+
+<!-- On crée ensuite le body avec tous les éléments qui seront présents sur la page web -->
+
+<body onload="load_data();">
+  <div class="bg"></div>
+  <div class="content">
+
+    <main>
+      <!-- On crée le bloc de gauche -->
+      <aside>
+        <!-- On construit l'en tête du bloc de gauche -->
+        <header>
+        <!-- On ajoute le titre principal de la page, en lui donnant la fonctionnalité de réinitialiser la page cf <a> -->
+          <h1><a href="index.html">Countries of the World : Africa </a></h1>
+          <br>
+          <!-- On crée une barre de navigation sous le titre, avec un fonctionnalité "Home" qui réinitialise la page et la liste déroulante des pays "Countries" -->
+          <div class="navbar">
+            <a href="index.html">Home</a> <!-- "Home" -->
+            <div class="dropdown">
+              <button class="dropbtn">Countries</button> <!-- Menu déroulant "Countries" -->
+              <div class="dropdown-content" id="navig"> <!-- On ajoute ici tous les pays de la base de données cf function load_data -->
+              </div>
+            </div>
+          </div>
+        </header>
+
+
+
+        <div>
+          <!-- On construit le bloc avec les informations du pays sélectionné, qui reste caché tant qu'aucun pays n'est choisi par l'utilisateur -->
+          <div id="error_msg"></div>
+          <!-- A chaque élément id est attribué un élément de la base de données cf function OnMarkerClick -->
+          <div id="country_data" hidden="true">
+            <h3 id="country_name"></h3>
+          <!-- On crée ensuite une case où l'on ajoutera l'image du drapeau du pays, présent dans le dossier "drapeaux" et enregistré via la base de données -->
+            <td height="2em">
+            <img id="drapeau" src="" height="75"></img>
+            </td>
+            <br>
+            <!-- On crée notre liste d'informations concernant le pays choisi sous le titre -->
+            <ul>
+              <li>
+				<b> Conventional name : </b>
+				<SPAN id="off_name"></SPAN>
+			  </li>
+              <li>
+				<b> Capital : </b>
+				<SPAN id="capital"></SPAN>
+			  </li>
+              <li>
+				<b> Leader : </b>
+				<SPAN id="leader"></SPAN>
+			  </li>
+              <li>
+				<b> Population : </b>
+				<SPAN id="population"></SPAN>
+			  </li>
+              <li>
+				<b> Area (km²) : </b>
+				<SPAN id="area"></SPAN>
+			  </li>
+              <li>
+				<b> HDI : </b>
+				<SPAN id="HDI"></SPAN>
+			  </li>
+              <li>
+				<b> Currency : </b>
+				<SPAN id="currency"></SPAN>
+			  </li>
+              <li>
+			  	<b> Languages : </b>
+				<SPAN id="languages"></SPAN>
+			  </li>
+              <li>
+				<b> Latitude : </b>
+				<SPAN id="latitude"></SPAN>
+			  </li>
+              <li>
+				<b> Longitude : </b>
+				<SPAN id="longitude"></SPAN>
+			  </li>
+              <br>
+            </ul>
+            <!-- On ajoute un lien vers la page wikipedia associé au pays en question -->
+            <a id="wp">Wikipedia link</a>
+
+          </div>
+        </div>
+        <!-- On ajoute une image qui sera toujours présente dans le bloc d'affichage d'informations -->
+        <img src="images/afrique.png" id="afr" alt="" width="150" height="150" style="float:left;margin:0 10px 0 110px;" />
+      </aside>
+      <section>
+        <table>
+          <td><div id="map"></div></td>
+        </table>
+      </section>
+    </main>
+  </div>
+</body>
+
+
+<script>
+
+/* On ajuste les dimensions de la map à la taille de la fenêtre */
+document.querySelector('.content td').style.width = window.innerWidth-300+"px";
+document.querySelector('.content td').style.height = window.innerHeight+"px";
+var map = L.map('map').setView([4,12], 1);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+
+function load_data () {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var data = JSON.parse(this.responseText);
+    for ( n = 0; n < data.length; n++ ) {
+      /* On crée une fenêtre avec le nom du pays au dessus du pointeur cliqué */
+      L.marker([data[n].lat,data[n].lon]).addTo(map).bindPopup(data[n].wp).addEventListener('click',OnMarkerClick).idnum = data[n].wp;
+
+      /* On crée un lien associé à chaque pays de la base de données */
+      var country = document.createElement("a");
+      country.innerHTML = data[n].wp;
+      /* On attribue au lien créé la fonction OnCountryClick */
+      country.setAttribute("onclick", "OnCountryClick('"+data[n].wp+"')");
+      /* On place le lien dans l'élément souhaité : la liste déroulante id = "navig" */
+      document.querySelector("#navig").appendChild(country);
+    };
+  };
+  xhr.open('GET','/location',true);
+  xhr.send();
+};
+
+/* On charge les données lorsque l'on clique sur un pointeur depuis la base de donnée */
+function OnMarkerClick (e) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var data = JSON.parse(this.responseText);
+    country_name.innerHTML =  '<b><i>' + e.target.getPopup().getContent() + '</i></b><br>';
+	map.flyTo([data.latitude,data.longitude],3)
+    window.error_msg.innerHTML = ''
+    window.country_data.style.display = 'block';
+    window.country_data.hidden.boolContent = false;
+    window.country_name.textContent = data.wp;
+    window.off_name.textContent = data.nom;
+    window.capital.textContent = data.capitale;
+    window.latitude.textContent = data.latitude.toFixed(3)+'°';
+    window.longitude.textContent = data.longitude.toFixed(3)+'°';
+    window.leader.textContent = data.leader;
+    window.population.textContent = data.population;
+    window.area.textContent = data.superficie;
+    window.HDI.textContent = data.HDI;
+	window.languages.textContent = data.langues;
+    window.currency.textContent = data.monnaie;
+    window.wp.href = 'https://en.wikipedia.org/wiki/'+ data.wp;
+    document.getElementById("drapeau").src = "../drapeau/"+data.image;
+  };
+  var idnum = e.target.idnum;
+  /* On ouvre l'onglet description */
+  xhr.open('GET','/description/'+idnum,true);
+  xhr.send();
+};
+
+
+/* On crée une seconde fonction permettant de réaliser la même action qu'un clique sur un pointeur mais en cliquant sur l'un des pays du menu déroulant*/
+
+function OnCountryClick(pays) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var data = JSON.parse(this.responseText);
+	map.flyTo([data.latitude,data.longitude],5)
+    window.error_msg.innerHTML = ''
+    window.country_data.style.display = 'block';
+    window.country_data.hidden.boolContent = false;
+    window.country_name.textContent = data.wp;
+    window.off_name.textContent = data.nom;
+    window.capital.textContent = data.capitale;
+    window.latitude.textContent = data.latitude.toFixed(3)+'°';
+    window.longitude.textContent = data.longitude.toFixed(3)+'°';
+    window.leader.textContent = data.leader;
+    window.population.textContent = data.population;
+    window.area.textContent = data.superficie;
+	window.languages.textContent = data.langues;
+    window.HDI.textContent = data.HDI;
+    window.currency.textContent = data.monnaie;
+    window.wp.href = 'https://en.wikipedia.org/wiki/'+data.wp;
+    document.getElementById("drapeau").src = "../drapeau/"+data.image;
+  };
+  xhr.open('GET','/description/'+pays,true);
+  xhr.send();
+};
+
+</script>
