@@ -17,7 +17,7 @@ On surcharge la méthode qui traite les requêtes GET
      # on récupère les paramètres
     self.init_params()
 
-    # le chemin d'accès commence par "location"
+    # le chemin d'accès commence par  "location"
     if self.path_info[0] == "location":
       data = self.data_loc()
       self.send_json(data)
