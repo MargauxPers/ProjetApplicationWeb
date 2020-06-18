@@ -1,0 +1,145 @@
+/* Fichier CSS */
+
+* {
+  /*Initialisation de l'affichage des éléments */
+  margin: 0px; /* Décalage par rapport aux autres éléments */
+  padding: 0px; /* Décalage des éléments internes (ex : dans un élément div) */
+  box-sizing: content-box;
+  font-family: 'Calisto MT', sans-serif; /* Police d'écriture = 'Calisto MT', importé grâce au fichier googleapis cf fichier HTML,
+  sans-serif = police de sécurité si l'importation de 'Montserrat' échoue */
+  border-spacing: 0px;
+}
+
+header h1 {
+  border: none;
+  box-shadow: none;
+  text-align: center;
+  text-decoration:none;
+}
+
+header a {
+  text-decoration:none;
+  color: black; /*Couleur en hexadécimal*/
+}
+
+li {
+  list-style-type: none;
+}
+
+header {
+  display: block; /* On aligne les blocs les uns dessous les autres */
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+main {
+  display: flex; /* Modèle "flexible", s'adapte aux autres éléments de la page */
+}
+
+aside {
+  width: 400px; /* Dimensions du bloc de gauche */
+  background-color: #F0A30FE6;background: linear-gradient(#F0A30FE6, #F0A30F61);
+}
+
+
+#country_data {
+  color: black; /* Couleur du texte */
+  border: 2px #FFFFFF 'solid'; /* Bordure du bloc "Informations" avec les données des pays */
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 5px 9px #CCC;
+}
+
+#wp {
+  text-align: center;
+  text-decoration:none;
+  color: #A00000;
+}
+
+#wp:hover { /* On modifie la couleur et on souligne le lien Wikipedia en passant la souris dessus */
+  text-decoration: underline;
+  color: #D10000;
+}
+
+#map { /* On met la map sur l'intégralité de la fenêtre */
+  height: 100%;
+  width: 100%;
+}
+
+#nationsU {
+  width: 100px;
+  margin: 40px;
+  margin: auto;
+  webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  text-align: center;
+  display: block;
+}
+
+
+
+.navbar {
+  overflow: hidden; /* Dépassement du contenu caché */
+  background-color: black
+}
+
+.navbar a {
+  float: left; /* Barre de navigation placé à gauche  */
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn { /* On modifie la couleur de l'élément lors du passage de la souris */
+  background-color: #B00;
+}
+
+.dropdown-content {
+  display: none; /* On cache la liste sauf si on passe la souris dessus cf ligne 140 */
+  position: absolute; /* Mets l'élément à une position bien fixée, même en bougeant sur la page */
+  background-color: #f9f9f9;
+  min-width: 160px; /* Largeur minimale */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* rgba = couleur, plus ajout de transparence avec le 4e argument */
+  z-index: 1; /* On met l'élément au premier plan  */
+  overflow-y: scroll;
+  max-height: 380px;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover { /* On modifie l'affichage des éléments lors du passage de la souris */
+  background-color: #B00;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content { /* On affiche la liste en passant la souris dessus */
+  display: block;
+}
+
