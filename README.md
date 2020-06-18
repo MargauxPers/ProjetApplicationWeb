@@ -16,5 +16,8 @@ Choix des informations utilisées :
  - Langues ok
  - Monnaie ok
  - IDH ok
+ -Moyenne d'âge : pas les données
  
- To do: (Trouver une solution pour le get_langues), finir les fts get_les infos qu'on veut récupérer => faire fonction moyenne d'âge, faire la table SQLITE 
+ Table SQLITE ok
+
+
