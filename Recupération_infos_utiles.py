@@ -1,6 +1,6 @@
 import wptools
 import re
-#---------------------------------------------------Definition des fonctions-------------------------------------------------
+#----------------------------------------------------Definition des fonctions-------------------------------------------------
 
 def get_information(country):
     page = wptools.page(country)                             #On va chercher la page Wikipédia en question
