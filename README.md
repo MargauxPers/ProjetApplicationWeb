@@ -19,5 +19,12 @@ Choix des informations utilisées :
  -Moyenne d'âge : pas les données
  
  Table SQLITE ok
+ rendu :
+ CDC 
+ notice 
+ difficultés 
+ video
+ relation serveur client
+ diagramme classe ? 
 
 
