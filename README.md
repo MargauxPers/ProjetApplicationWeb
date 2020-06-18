@@ -23,7 +23,7 @@ Choix des informations utilisées :
 - CDC ok
 - notice ok
 - difficultés ok
- video
+- video
  relation serveur client
  diagramme classe ? 
 
