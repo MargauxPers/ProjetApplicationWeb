@@ -1,9 +1,9 @@
 import wptools
 import re
-#----------------------------------------------------Definition des fonctions------------------------------------------------
+#----------------------------------------------------Definition des fonctions-------------------------------------------------
 
 def get_information(country):
-    page = wptools.page(country)                             #On va chercher la page Wikipédia en question
+    page = wptools.page(country)                             #On va chercher la page Wikipédia voulue
     page.get_parse(False)
     return page.data['infobox'] 
 
@@ -26,7 +26,7 @@ def get_capitale(info):
         capitale = m.group(1)                                # on récupère le contenu des [[...]]
         return capitale      
     
-    print(' Could not fetch country capital {}'.format(info))# Cas particulier, si impossible a trouver
+    print(' Could not fetch country capital {}'.format(info))# Cas particulier, si impossible à trouver
     return None
 
 def get_monnaie(info):
