@@ -104,7 +104,7 @@ def get_coords(info):
                     return lat_et_long
                 
                 elif get_nom(info) == 'Republic of Benin' :
-                    return {'latitude': 6.4833333, 'longitude': 2.6} #pour le Benin où les données n'existent pas sur la page Wikipédia
+                    return {'latitude': 6.4833333, 'longitude': 2.6} #pour le Bénin où les données n'existent pas sur la page Wikipédia
                
                 elif get_nom(info) == 'Republic of Mauritius' :
                     return {'latitude': 20.2, 'longitude': 57.5}
@@ -134,7 +134,7 @@ def get_leader(info) :
             leader = list_leader[1].split(']]')[0]                    #On extrait les données
             return leader
      if leader == '':
-        return "Le nom du leader n'est pas disponible."               # Sinom introuvable
+        return "Le nom du leader n'est pas disponible."               # Si le nom est introuvable
 
 
 def get_langues (info):
@@ -234,7 +234,7 @@ Afrique=['Algeria','Angola','Benin','Botswana','Burkina_Faso','Burundi','Cameroo
          'Kenya','Lesotho','Liberia','Libya','Madagascar','Malawi','Mali','Mauritania','Mauritus','Morocco',\
          'Mozambique','Namibia','Niger','Nigeria','Republic_of_the_Congo','Rwanda','Sao_Tomé_and_Principe',\
          'Senegal','Seychelles','Sierra_Leone','Somalia','South_Africa','South_Sudan','Sudan','Tanzania',\
-         'The_Gambia','Togo','Tunisia','Uganda','Zambia','Zimbabwe']
+         'The_Gambia','Togo','Tunisia','Uganda','Zambia','Zimbabwe'] #ensemble des pays d'Afrique
 
 for pays in Afrique:
     
