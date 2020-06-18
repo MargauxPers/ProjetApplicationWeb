@@ -24,7 +24,7 @@ Choix des informations utilisées :
 - notice ok
 - difficultés ok
 - video
- relation serveur client
+- relation serveur client
  diagramme classe ? 
 
 
