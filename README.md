@@ -1,5 +1,7 @@
 ## Projet d'application Web 
 
+Bonjour,
+
 Ce projet correspond à un développement réalisé dans le cadre de l'enseignement INF-TC3 en première année de l'Ecole Centrale de Lyon.
 
 But de l'activité : 
