@@ -8,10 +8,6 @@ import sqlite3
 
 
 
-
-
-
-
 class RequestHandler(http.server.SimpleHTTPRequestHandler):
   # Il s'agit du sous-répertoire racine des documents statiques
   static_dir = '/client'
@@ -26,7 +22,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
   
   
   
-  
+ 
   def do_GET(self):
 
     # On récupère les paramètres :
