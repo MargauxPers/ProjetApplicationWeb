@@ -6,7 +6,7 @@ import json
 import sqlite3
 
 class RequestHandler(http.server.SimpleHTTPRequestHandler):
-  # sous-répertoire racine des documents statiques
+  # Il s'agit du sous-répertoire racine des documents statiques
   static_dir = '/client'
   # version du serveur
   server_version = 'projet/0.1'
@@ -16,19 +16,19 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
   #
   def do_GET(self):
 
-    # on récupère les paramètres
+    # On récupère les paramètres
     self.init_params()
 
-    # le chemin d'accès commence par "location"
+    # Si le chemin d'accès commence par "location"
     if self.path_info[0] == "location":
       data = self.data_loc()
       self.send_json(data)
 
-    # le chemin d'accès commence par "description"
+    # Si le chemin d'accès commence par "description"
     elif self.path_info[0] == "description":
       self.send_json_country(self.path_info[1])
 
-    # le chemin d'accès commence par "service"
+    # Si le chemin d'accès commence par "service"
     elif self.path_info[0] == "service":
       self.send_html('<p>Path info : <code>{}</p><p>Chaîne de requête : <code>{}</code></p>'.format('/'.join(self.path_info),self.query_string));
 
@@ -37,16 +37,16 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
       self.send_static()
 
   #
-  # On surcharge la méthode qui traite les requêtes HEAD
+  # Puis on surcharge la méthode qui traite les requêtes HEAD
   #
   def do_HEAD(self):
       self.send_static()
 
   def send_static(self):
-    # on modifie le chemin d'accès en insérant un répertoire préfixe
+    # Puis on modifie le chemin d'accès en insérant un répertoire préfixe
     self.path = self.static_dir + self.path
 
-    # on appelle la méthode parent (do_GET ou do_HEAD)
+    # On appelle la méthode parent (do_GET ou do_HEAD)
     # à partir du verbe HTTP (GET ou HEAD)
     if (self.command=='HEAD'):
         http.server.SimpleHTTPRequestHandler.do_HEAD(self)
@@ -81,7 +81,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
   #
-  # on analyse la requête pour initialiser nos paramètres
+  # On analyse la requête afin d'initialiser nos paramètres
   #
   def init_params(self):
     #On analyse l'adresse
@@ -93,7 +93,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
     #On analyse la requète
     self.params = parse_qs(info.query)
 
-    #Récupération du corps
+    #On récupère du corps
     length = self.headers.get('Content-Length')
     ctype = self.headers.get('Content-Type')
     if length:
@@ -103,7 +103,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
     else:
       self.body = ''
 
-    #Traces
+    #Traces 
     print('info_path =',self.path_info)
     print('body =',length,ctype,self.body)
     print('params =', self.params)
