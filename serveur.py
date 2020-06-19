@@ -5,15 +5,28 @@ from urllib.parse import urlparse, parse_qs, unquote
 import json
 import sqlite3
 
+
+
+
+
+
+
+
 class RequestHandler(http.server.SimpleHTTPRequestHandler):
   # Il s'agit du sous-répertoire racine des documents statiques
   static_dir = '/client'
   # version du serveur
   server_version = 'projet/0.1'
 
+  
+  
   #
   # On surcharge la méthode qui traite les requêtes GET :
   #
+  
+  
+  
+  
   def do_GET(self):
 
     # On récupère les paramètres :
@@ -39,9 +52,17 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
   #
   # Puis on surcharge la méthode qui traite les requêtes HEAD :
   #
+  
+  
+  
+  
   def do_HEAD(self):
       self.send_static()
 
+      
+      
+      
+      
   def send_static(self):
     # Puis on modifie le chemin d'accès en insérant un répertoire préfixe :
     self.path = self.static_dir + self.path
@@ -57,14 +78,23 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
   #
   #On envoie des données en format html :
   #
+  
+  
+  
+  
   def send_html(self,content):
      headers = [('Content-Type','text/html;charset=utf-8')]
      html = '<!DOCTYPE html><title>{}</title><meta charset="utf-8">{}'.format(self.path_info[0],content)
      self.send(html,headers)
 
+      
+      
   #
   #On envoie des données qui sont en format json :
   #
+  
+  
+  
   def send_json(self,data,headers=[]):
     #On convertit nos données de format utf-8 en bits.
     #json.dumps permet de transformer data en str pour le convertir en bits : 
@@ -80,9 +110,14 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
     self.wfile.write(body)
 
 
+    
+    
   #
   # On analyse la requête afin d'initialiser nos paramètres :
   #
+  
+  
+  
   def init_params(self):
     #On analyse l'adresse : 
     info = urlparse(self.path)
@@ -109,9 +144,16 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
     print('params =', self.params)
 
 
+    
+    
   #
   # Enfin, on renvoie les informations d'un pays au format json :
   #
+  
+  
+  
+  
+  
   def send_json_country(self, country) :
 
     # on récupère le pays depuis la base de données :
@@ -128,9 +170,17 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
       headers = [('Content-Type','application/json')]
       self.send_json(data,headers)
 
+      
+      
+      
   #
   #Récupération des données des pays :
   #
+  
+  
+  
+  
+  
   def data_loc(self) :
     #Préparation de la requête SQL
     c = conn.cursor()
@@ -150,8 +200,15 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
     return data
 
 
+  
+  
+  
   #
   #On récupère des données d'un pays
+  
+  
+  
+  
   #
   def db_get_country(self,country):
     c = conn.cursor()
@@ -163,13 +220,219 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
 #
 # Puis on ouvre d'une connexion avec la base de données
 #
+
+
+
+
 conn = sqlite3.connect('pays.sqlite')
 
 # Pour accéder au résultat des requêtes sous forme d'un dictionnaire
 conn.row_factory = sqlite3.Row
 
+
+
 #
 # Enfin, on procède à l'nstanciation et lancement du serveur
 #
+
+
+
 httpd = socketserver.TCPServer(("", 8081), RequestHandler)
 httpd.serve_forever()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
