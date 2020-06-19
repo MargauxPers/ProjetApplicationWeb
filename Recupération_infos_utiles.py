@@ -137,21 +137,21 @@ def get_leader(info) :
         return "Le nom du leader n'est pas disponible."               # Si le nom est introuvable
 
 
-def get_langues (info):
+def get_langues (info):                         #On implémente la fonction qui permet de récupérer les langues
     langues = ''
     
-    if get_nom(info) == "State of Eritrea" : 
-        langues = info['national_languages']
+    if get_nom(info) == "State of Eritrea" :        #Cas particulier pour l'Erythrée
+        langues = info['national_languages']        # elle a plusieurs longues officielles donc il faut s'adapter
         
-    elif  get_nom(info) == "Republic of Burundi" or get_nom(info) == "United Republic of Tanzania": 
-        langues = info['languages']
+    elif  get_nom(info) == "Republic of Burundi" or get_nom(info) == "United Republic of Tanzania":    #Cas particulier pour le Burundi et pour la Tanzanie
+        langues = info['languages']             #  elle a plusieurs longues officielles donc il faut s'adapter
         
     
-    elif 'official_languages' in info :
+    elif 'official_languages' in info :      #On récupère les langues officielles
         langues = info['official_languages']
         # parfois l'information récupérée comporte plusieurs lignes
         # on remplace les retours à la ligne par un espace
-        langues = info['official_languages'].replace('\n',' ')
+        langues = info['official_languages'].replace('\n',' ')     #On stocke les langues récupérées
         
     if ':' in langues :
         langues = langues.split(':')[1]
@@ -162,7 +162,7 @@ def get_langues (info):
     if 'unbulleted list' in langues :
         langues = langues.split('unbulleted list')[1]
         
-    if get_nom(info) == 'Republic of Mauritius' :
+    if get_nom(info) == 'Republic of Mauritius' :           #Cas particulier pour la Mauritanie
         langues_bis = langues.split('<br>')[1] + langues.split('<br>')[2]
         langues = langues_bis.split('{{')[0] + (langues_bis.split('}}')[1]).split('{{')[0]
         
