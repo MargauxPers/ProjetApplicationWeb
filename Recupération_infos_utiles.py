@@ -213,14 +213,14 @@ def get_langues (info):                         #On implémente la fonction qui 
         
     return langues_txt
         
-def get_HDI(info):
+def get_HDI(info):              #On crée la fonction qui permet de récupérer et d'indiquer l'IDH de chaque pays (Indice de Développement Humain)
     HDI=''
     liste=['HDI']
     for elt in liste:
         if elt in info:
             HDI=info[elt]                                              #chaîne de caractères des données
             return HDI
-        if HDI=='':
+        if HDI=='':       #Cas particulier : si l'IDH n'est pas indiqué
             return 'Data not available'
                 
             ############ # faire densité, langues
