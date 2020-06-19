@@ -2,10 +2,15 @@ import wptools
 import re
 #----------------------------------------------------Definition des fonctions-------------------------------------------------
 
+#On va chercher la page Wikipédia voulue
+
 def get_information(country):
-    page = wptools.page(country)                             #On va chercher la page Wikipédia voulue
+    page = wptools.page(country)                             
     page.get_parse(False)
     return page.data['infobox'] 
+
+
+
 
 
 def get_nom(info):
@@ -14,6 +19,8 @@ def get_nom(info):
     return nom
 
 
+
+#On récupère la donnée "capitale"
 import re
 def get_capitale(info):
     # cas général : 
@@ -29,6 +36,11 @@ def get_capitale(info):
     print(' Could not fetch country capital {}'.format(info))# Cas particulier, si impossible à trouver
     return None
 
+
+
+
+
+#On récupère la donnaie "monnaie"
 def get_monnaie(info):
     monnaie=''
     liste=['currency']
@@ -55,7 +67,11 @@ def get_population(info):
         if population=='':
             return 'Data not available'                     #on met la population
         
+
         
+        
+        
+#On récupère les coordonnées        
 def get_coords(info):    
     liste=['coordinates','largest_city','capital']          #Différents noms possibles pour obtenir des coordonnées
     for elt in liste:
@@ -113,6 +129,9 @@ def get_coords(info):
                     return {'latitude' : -25.7333333, 'longitude':28.1833333}
                 
 
+                
+                
+#On récupère la superficie                
 def get_superficie(info):
     sup = ''
     aire = ['area_km2']                                             #On crée une liste contenant les différentes 
@@ -123,7 +142,10 @@ def get_superficie(info):
         if sup == '':                                               #Si la superficie n'est pas disponible 
             return "La superficie n'est pas disponible."
     
-  
+
+    
+    
+ #On récupère nom du dirigeant de chaque pays   
 def get_leader(info) :
     leader = ''
     l_leader = ['leader','leader_name1']
@@ -136,6 +158,8 @@ def get_leader(info) :
      if leader == '':
         return "Le nom du leader n'est pas disponible."               # Si le nom est introuvable
 
+    
+    
 
 def get_langues (info):                         #On implémente la fonction qui permet de récupérer les langues
     langues = ''
@@ -213,6 +237,10 @@ def get_langues (info):                         #On implémente la fonction qui 
         
     return langues_txt
         
+    
+    
+    
+    
 def get_HDI(info):              #On crée la fonction qui permet de récupérer et d'indiquer l'IDH de chaque pays (Indice de Développement Humain)
     HDI=''
     liste=['HDI']
@@ -225,8 +253,20 @@ def get_HDI(info):              #On crée la fonction qui permet de récupérer 
                 
             ############ # faire densité, langues
            
+        
+        
+        
+        
+        
+        
 #-------------------------------------------------- Base de données --------------------------------------------------------
     
+    
+    
+    
+    
+    
+
 Afrique=['Algeria','Angola','Benin','Botswana','Burkina_Faso','Burundi','Cameroon',\
          'Cape_Verde','Central_African_Republic','Chad','Comoros','Democratic_Republic_of_the_Congo',\
          'Djibouti','Egypt','Equatorial_Guinea','Eritrea','Eswatini',\
@@ -235,6 +275,9 @@ Afrique=['Algeria','Angola','Benin','Botswana','Burkina_Faso','Burundi','Cameroo
          'Mozambique','Namibia','Niger','Nigeria','Republic_of_the_Congo','Rwanda','Sao_Tomé_and_Principe',\
          'Senegal','Seychelles','Sierra_Leone','Somalia','South_Africa','South_Sudan','Sudan','Tanzania',\
          'The_Gambia','Togo','Tunisia','Uganda','Zambia','Zimbabwe'] #ensemble des pays d'Afrique
+
+
+
 
 for pays in Afrique:
     
@@ -261,6 +304,97 @@ for pays in Afrique:
     image=pays+'.png'  #pour afficher les images côté client
     
     
+    
+    
     # soumission de la commande (noter que le second argument est un tuple)
     c.execute(sql,(pays, nom, capitale, leader, population, superficie, HDI, monnaie, langues, lat_et_long['latitude'],lat_et_long['longitude'],image))
     conn.commit()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
