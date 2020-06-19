@@ -38,7 +38,7 @@ def get_monnaie(info):
             liste_monnaie=info_monnaie.split('[[')           #extraction de la donnée
             monnaie=liste_monnaie[1].split(']]')[0]
             return monnaie
-    if monnaie=='':
+    if monnaie=='':        #Cas particulier : si la donnée de la monnaie n'est pas indiquée
         return 'Data not available'
     
     
