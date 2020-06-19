@@ -106,7 +106,7 @@ def get_coords(info):
                 elif get_nom(info) == 'Republic of Benin' :    
                     return {'latitude': 6.4833333, 'longitude': 2.6} #pour le Bénin où les données n'existent pas sur la page Wikipédia
                
-                elif get_nom(info) == 'Republic of Mauritius' :
+                elif get_nom(info) == 'Republic of Mauritius' :      #Cas particulier pour la Mauritanie
                     return {'latitude': 20.2, 'longitude': 57.5}
                 
                 else : #Pour l'Afrique du Sud
