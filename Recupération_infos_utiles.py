@@ -16,7 +16,7 @@ def get_nom(info):
 
 import re
 def get_capitale(info):
-    # cas général
+    # cas général : 
     if 'capital' in info:                                    # Si l'information récupérée comporte plusieurs lignes
         capitale = info['capital'].replace('\n',' ')         # on remplace les retours à la ligne par un espace
         
@@ -103,7 +103,7 @@ def get_coords(info):
                     lat_et_long['longitude']=long
                     return lat_et_long
                 
-                elif get_nom(info) == 'Republic of Benin' :
+                elif get_nom(info) == 'Republic of Benin' :    
                     return {'latitude': 6.4833333, 'longitude': 2.6} #pour le Bénin où les données n'existent pas sur la page Wikipédia
                
                 elif get_nom(info) == 'Republic of Mauritius' :
