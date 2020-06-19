@@ -37,17 +37,17 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
       self.send_static()
 
   #
-  # Puis on surcharge la méthode qui traite les requêtes HEAD
+  # Puis on surcharge la méthode qui traite les requêtes HEAD :
   #
   def do_HEAD(self):
       self.send_static()
 
   def send_static(self):
-    # Puis on modifie le chemin d'accès en insérant un répertoire préfixe
+    # Puis on modifie le chemin d'accès en insérant un répertoire préfixe :
     self.path = self.static_dir + self.path
 
     # On appelle la méthode parent (do_GET ou do_HEAD)
-    # à partir du verbe HTTP (GET ou HEAD)
+    # à partir du verbe HTTP (GET ou HEAD) :
     if (self.command=='HEAD'):
         http.server.SimpleHTTPRequestHandler.do_HEAD(self)
     else:
@@ -55,7 +55,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
   #
-  #On envoie des données en format html
+  #On envoie des données en format html :
   #
   def send_html(self,content):
      headers = [('Content-Type','text/html;charset=utf-8')]
@@ -63,11 +63,11 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
      self.send(html,headers)
 
   #
-  #On envoie des données qui sont en format json
+  #On envoie des données qui sont en format json :
   #
   def send_json(self,data,headers=[]):
-    #On convertit nos données de format utf-8 en bits
-    #json.dumps permet de transformer data en str pour le convertir en bits
+    #On convertit nos données de format utf-8 en bits.
+    #json.dumps permet de transformer data en str pour le convertir en bits : 
     body = bytes(json.dumps(data),'utf-8')
     #On envoie la ligne de statut
     self.send_response(200)
@@ -81,19 +81,19 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
   #
-  # On analyse la requête afin d'initialiser nos paramètres
+  # On analyse la requête afin d'initialiser nos paramètres :
   #
   def init_params(self):
-    #On analyse l'adresse
+    #On analyse l'adresse : 
     info = urlparse(self.path)
     #On récupère l'url sans /
     self.path_info = [unquote(v) for v in info.path.split('/')[1:]]
-    #On récupère la requète de l'url
+    #On récupère la requète de l'url :
     self.query_string = info.query
-    #On analyse la requète
+    # Et on analyse la requête :
     self.params = parse_qs(info.query)
 
-    #On récupère du corps
+    #On récupère du corps :
     length = self.headers.get('Content-Length')
     ctype = self.headers.get('Content-Type')
     if length:
@@ -103,33 +103,33 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
     else:
       self.body = ''
 
-    #Traces 
+    #Traces  :
     print('info_path =',self.path_info)
     print('body =',length,ctype,self.body)
     print('params =', self.params)
 
 
   #
-  # Enfin, on renvoie les informations d'un pays au format json
+  # Enfin, on renvoie les informations d'un pays au format json :
   #
   def send_json_country(self, country) :
 
-    # on récupère le pays depuis la base de données
+    # on récupère le pays depuis la base de données :
     r = self.db_get_country(country)
 
-    # on n'a pas trouvé le pays demandé
+    # Si on n'a pas trouvé le pays demandé :
     if r == None:
       self.send_error(404,'Country not found')
 
-    # on renvoie un dictionnaire au format JSON
+    # on renvoie un dictionnaire au format JSON :
     else :
-      #k correspond à la clef primaire de notre base de donnée
+      #k correspond ici à la clef primaire de notre base de donnée :
       data = {k:r[k] for k in r.keys()}
       headers = [('Content-Type','application/json')]
       self.send_json(data,headers)
 
   #
-  #Récupération des données des pays
+  #Récupération des données des pays :
   #
   def data_loc(self) :
     #Préparation de la requête SQL
