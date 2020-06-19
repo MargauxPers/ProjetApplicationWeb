@@ -110,7 +110,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
   #
-  # On renvoie les informations d'un pays au format json
+  # Enfin, on renvoie les informations d'un pays au format json
   #
   def send_json_country(self, country) :
 
@@ -151,7 +151,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
   #
-  #Récupération des données d'un pays
+  #On récupère des données d'un pays
   #
   def db_get_country(self,country):
     c = conn.cursor()
@@ -161,7 +161,7 @@ class RequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 #
-# Ouverture d'une connexion avec la base de données
+# Puis on ouvre d'une connexion avec la base de données
 #
 conn = sqlite3.connect('pays.sqlite')
 
@@ -169,7 +169,7 @@ conn = sqlite3.connect('pays.sqlite')
 conn.row_factory = sqlite3.Row
 
 #
-# Instanciation et lancement du serveur
+# Enfin, on procède à l'nstanciation et lancement du serveur
 #
 httpd = socketserver.TCPServer(("", 8081), RequestHandler)
 httpd.serve_forever()
