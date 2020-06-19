@@ -166,7 +166,7 @@ def get_langues (info):                         #On implémente la fonction qui 
         langues_bis = langues.split('<br>')[1] + langues.split('<br>')[2]
         langues = langues_bis.split('{{')[0] + (langues_bis.split('}}')[1]).split('{{')[0]
         
-    if get_nom(info) == 'Republic of South Africa' :
+    if get_nom(info) == 'Republic of South Africa' :        #Cas particulier pour l'Afrique du Sud 
         langues = langues.split('"constitution"')[1]
         langues = langues.split('<br/>')[0]
         
